@@ -1,0 +1,78 @@
+📄 ✅ PRACTICAL 4 – STEP BY STEP
+🔹 1. CREATE DATABASE
+CREATE DATABASE p4;
+USE p4;
+
+
+🔹 2. CREATE TABLES
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    Name VARCHAR(50)
+);
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT
+);
+
+
+🔹 3. INSERT DATA
+INSERT INTO Customers VALUES
+(1,'Gaurav'),
+(2,'Rahul'),
+(3,'Amit'),
+(4,'Sneha');
+
+INSERT INTO Orders VALUES
+(101,1),
+(102,2),
+(103,5);
+
+👉 (Order 103 has no matching customer)
+
+
+
+🔥 4. INNER JOIN
+SELECT C.CustomerID, C.Name, O.OrderID
+FROM Customers C
+INNER JOIN Orders O
+ON C.CustomerID = O.CustomerID;
+
+👉 Only matching data
+
+
+
+🔥 5. LEFT JOIN
+SELECT C.CustomerID, C.Name, O.OrderID
+FROM Customers C
+LEFT JOIN Orders O
+ON C.CustomerID = O.CustomerID;
+
+👉 All customers + matching orders
+
+
+
+🔥 6. RIGHT JOIN
+SELECT C.CustomerID, C.Name, O.OrderID
+FROM Customers C
+RIGHT JOIN Orders O
+ON C.CustomerID = O.CustomerID;
+
+👉 All orders + matching customers
+
+
+
+🔥 7. FULL OUTER JOIN (MySQL Trick)
+SELECT C.CustomerID, C.Name, O.OrderID
+FROM Customers C
+LEFT JOIN Orders O
+ON C.CustomerID = O.CustomerID
+
+UNION
+
+SELECT C.CustomerID, C.Name, O.OrderID
+FROM Customers C
+RIGHT JOIN Orders O
+ON C.CustomerID = O.CustomerID;
+
+👉 All data from both tables

@@ -1,0 +1,57 @@
+📄 ✅ PRACTICAL 5 – STEP BY STEP
+🔹 1. CREATE DATABASE
+CREATE DATABASE p5;
+USE p5;
+
+
+🔹 2. CREATE TABLE
+CREATE TABLE Sales (
+    SaleID INT PRIMARY KEY,
+    ProductName VARCHAR(50),
+    Amount INT
+);
+
+
+🔥 3. CREATE STORED PROCEDURE
+DELIMITER //
+
+CREATE PROCEDURE AddSale(
+    IN pid INT,
+    IN pname VARCHAR(50),
+    IN pamount INT
+)
+BEGIN
+    INSERT INTO Sales VALUES (pid, pname, pamount);
+END //
+
+DELIMITER ;
+
+
+🔹 4. CALL PROCEDURE (INSERT DATA)
+CALL AddSale(1, 'Laptop', 50000);
+CALL AddSale(2, 'Mobile', 20000);
+CALL AddSale(3, 'Tablet', 15000);
+
+
+🔹 5. CHECK DATA
+SELECT * FROM Sales;
+
+
+🔥 6. CREATE FUNCTION
+DELIMITER //
+
+CREATE FUNCTION TotalSales()
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE total INT;
+    
+    SELECT SUM(Amount) INTO total FROM Sales;
+    
+    RETURN total;
+END //
+
+DELIMITER ;
+
+🔹 7. CALL FUNCTION
+SELECT TotalSales();

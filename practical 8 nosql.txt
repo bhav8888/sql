@@ -1,0 +1,49 @@
+📄 ✅ PRACTICAL 8 – STEP BY STEP (CMD)
+🔹 1. START MONGODB SHELL
+mongosh
+
+🔹 2. CREATE / SWITCH DATABASE
+use p8DB
+
+👉 Database created ✔️
+
+
+
+🔹 3. CREATE COLLECTION + INSERT (CREATE)
+db.users.insertOne({
+  name: "Gaurav",
+  age: 20,
+  city: "Pune"
+});
+
+db.users.insertOne({
+  name: "Rahul",
+  age: 22,
+  city: "Mumbai"
+});
+
+db.users.insertOne({
+  name: "Amit",
+  age: 21,
+  city: "Nashik"
+});
+
+
+🔹 4. READ (DISPLAY DATA)
+db.users.find();
+
+🔹 5. FILTER (OPTIONAL)
+db.users.find({ name: "Gaurav" });
+
+🔹 6. UPDATE
+db.users.updateOne(
+  { name: "Gaurav" },
+  { $set: { age: 21 } }
+);
+
+
+🔹 7. DELETE
+db.users.deleteOne({ name: "Rahul" });
+
+🔹 8. FINAL CHECK
+db.users.find();

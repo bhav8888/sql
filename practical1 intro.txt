@@ -1,0 +1,59 @@
+📄 ✅ PRACTICAL 1 – FINAL SQL (COPY–PASTE)
+🔹 1. CREATE DATABASE
+CREATE DATABASE practice;
+USE practice;
+🔹 2. CREATE STUDENT TABLE
+CREATE TABLE Student (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Email VARCHAR(50),
+    Age INT,
+    Address VARCHAR(100)
+);
+🔹 3. CREATE INSTRUCTOR TABLE
+CREATE TABLE Instructor (
+    InstructorID INT PRIMARY KEY,
+    Name VARCHAR(80),
+    Email VARCHAR(70),
+    Department VARCHAR(70)
+);
+🔹 4. CREATE COURSE TABLE
+CREATE TABLE Course (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(40),
+    Credits INT,
+    InstructorID INT,
+    FOREIGN KEY (InstructorID) REFERENCES Instructor(InstructorID)
+);
+🔹 5. CREATE ENROLLMENT TABLE
+CREATE TABLE Enrollment (
+    EnrollmentID INT PRIMARY KEY,
+    StudentID INT,
+    CourseID INT,
+    EnrollmentDate DATE,
+    FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+);
+🔥 OPTIONAL (VERY GOOD FOR DEMO)
+
+👉 Insert sample data (if examiner asks)
+
+INSERT INTO Student VALUES
+(1, 'Gaurav', 'gaurav@gmail.com', 20, 'Pune'),
+(2, 'Rahul', 'rahul@gmail.com', 22, 'Mumbai');
+
+INSERT INTO Instructor VALUES
+(1, 'Dr. Sharma', 'sharma@gmail.com', 'IT');
+
+INSERT INTO Course VALUES
+(101, 'DBMS', 4, 1);
+
+INSERT INTO Enrollment VALUES
+(1, 1, 101, '2025-01-01');
+
+
+
+
+CREATE DATABASE p1; USE p1; CREATE TABLE Student (StudentID INT PRIMARY KEY, Name VARCHAR(50), Email VARCHAR(50), Age INT, Address VARCHAR(100)); CREATE TABLE Instructor (InstructorID INT PRIMARY KEY, Name VARCHAR(80), Email VARCHAR(70), Department VARCHAR(70)); CREATE TABLE Course (CourseID INT PRIMARY KEY, CourseName VARCHAR(40), Credits INT, InstructorID INT, FOREIGN KEY (InstructorID) REFERENCES Instructor(InstructorID)); CREATE TABLE Enrollment (EnrollmentID INT PRIMARY KEY, StudentID INT, CourseID INT, EnrollmentDate DATE, FOREIGN KEY (StudentID) REFERENCES Student(StudentID), FOREIGN KEY (CourseID) REFERENCES Course(CourseID)); INSERT INTO Student VALUES (1,'Gaurav','gaurav@gmail.com',20,'Pune'),(2,'Rahul','rahul@gmail.com',22,'Mumbai'),(3,'Amit','amit@gmail.com',21,'Nashik'),(4,'Sneha','sneha@gmail.com',23,'Delhi'),(5,'Priya','priya@gmail.com',20,'Nagpur'); INSERT INTO Instructor VALUES (1,'Dr. Sharma','sharma@gmail.com','IT'),(2,'Dr. Mehta','mehta@gmail.com','CS'); INSERT INTO Course VALUES (101,'DBMS',4,1),(102,'OS',3,2),(103,'CN',4,1); INSERT INTO Enrollment VALUES (1,1,101,'2025-01-01'),(2,2,102,'2025-01-02'),(3,3,103,'2025-01-03'),(4,4,101,'2025-01-04'),(5,5,102,'2025-01-05');
+
+

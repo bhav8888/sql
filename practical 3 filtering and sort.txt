@@ -1,0 +1,98 @@
+📄 ✅ PRACTICAL 3 – STEP BY STEP
+🔹 1. CREATE DATABASE
+CREATE DATABASE p3;
+USE p3;
+
+
+🔹 2. CREATE TABLES
+CREATE TABLE Student (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Age INT
+);
+
+CREATE TABLE Instructor (
+    InstructorID INT PRIMARY KEY,
+    Name VARCHAR(50)
+);
+
+CREATE TABLE Course (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(50),
+    Credits INT,
+    InstructorID INT,
+    FOREIGN KEY (InstructorID) REFERENCES Instructor(InstructorID)
+);
+
+CREATE TABLE Enrollment (
+    EnrollmentID INT PRIMARY KEY,
+    StudentID INT,
+    CourseID INT,
+    FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+);
+
+
+🔹 3. INSERT DATA
+INSERT INTO Student VALUES
+(1,'Gaurav',20),
+(2,'Rahul',22),
+(3,'Amit',21),
+(4,'Sneha',23),
+(5,'Priya',19);
+
+INSERT INTO Instructor VALUES
+(1,'Dr. Sharma'),
+(2,'Dr. Mehta');
+
+INSERT INTO Course VALUES
+(101,'DBMS',4,1),
+(102,'OS',3,2),
+(103,'CN',4,1);
+
+INSERT INTO Enrollment VALUES
+(1,1,101),
+(2,2,102),
+(3,3,103),
+(4,4,101),
+(5,5,102);
+
+
+🔥 4. FILTER (WHERE)
+👉 Students above age 20
+SELECT * FROM Student
+WHERE Age > 20;
+👉 Filter by instructor
+SELECT c.CourseName, i.Name
+FROM Course c
+JOIN Instructor i ON c.InstructorID = i.InstructorID
+WHERE i.Name = 'Dr. Sharma';
+
+
+🔥 5. SORTING (ORDER BY)
+👉 Alphabetical
+SELECT * FROM Student
+ORDER BY Name;
+👉 By credits (descending)
+SELECT * FROM Course
+ORDER BY Credits DESC;
+
+
+🔥 6. GROUP BY (Aggregation)
+👉 Student count per course
+SELECT CourseID, COUNT(*) AS TotalStudents
+FROM Enrollment
+GROUP BY CourseID;
+👉 Average age
+SELECT AVG(Age) AS AvgAge
+FROM Student;
+
+🔥 7. SUBQUERY
+👉 Students above average age
+SELECT * FROM Student
+WHERE Age > (SELECT AVG(Age) FROM Student);
+👉 Courses with more than 1 student
+SELECT CourseID
+FROM Enrollment
+GROUP BY CourseID
+HAVING COUNT(*) > 1;
